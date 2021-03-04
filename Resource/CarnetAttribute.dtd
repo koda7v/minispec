@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!ELEMENT Carnet (contact*)>
-<!ATTLIST Carnet type CDATA "commun">
-<!ELEMENT contact (autre*)>
-<!ATTLIST contact nom CDATA "">
-<!ATTLIST contact prenom CDATA "">
-<!ATTLIST contact adresse CDATA "">
-<!ATTLIST contact age CDATA "">
-<!ATTLIST contact numero CDATA "">
-<!ELEMENT autre EMPTY>
-<!ATTLIST autre label CDATA "">
-<!ATTLIST autre valeur CDATA "">
+
+<!ELEMENT Model (entity+)>
+<!ATTLIST Model name CDATA "">
+<!ELEMENT entity (attribute*)>
+<!ATTLIST entity name CDATA "">
+<!ELEMENT attribute (#PCDATA)>
+<!ATTLIST attribute name CDATA "">
+<!ATTLIST attribute type CDATA "">
+
+
