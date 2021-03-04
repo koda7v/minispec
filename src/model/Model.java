@@ -1,5 +1,6 @@
-package minispec.model;
+package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Model
@@ -9,7 +10,13 @@ public class Model
 
   public Model()
   {
-    // TODO Auto-generated constructor stub
+    this.entities = new ArrayList<>();
+  }
+
+  public Model(String nom)
+  {
+    this();
+    this.nom = nom;
   }
 
   public String getNom()

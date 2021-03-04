@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Model PUBLIC "CarnetId" "Carnet.dtd">
 <Model>
-	<nom name="patate"/>
+	<name name="patate"/>
 	<entity name="Satellite">
-	2 <attribute name="nom" type="String"/>
-	3 <attribute name="id" type="Integer"/>
-	4</entity>
+		<attribute name="nom" type="String"/>
+		<attribute name="id" type="Integer"/>
+	</entity>
 <Model>
 
 

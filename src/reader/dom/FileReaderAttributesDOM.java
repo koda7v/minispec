@@ -1,10 +1,8 @@
 package reader.dom;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.net.URL;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -15,11 +13,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import Model.Autre;
-import Model.Carnet;
-import Model.Contact;
-import constants.IAutreConstant;
-import constants.IContactConstant;
+import constants.Constant;
+import model.Attribute;
+import model.Entity;
+import model.Model;
 
 /**
  * Version avec attributs
@@ -30,91 +27,106 @@ import constants.IContactConstant;
 public class FileReaderAttributesDOM
 {
 
-  protected Carnet carnet;
+  protected Model model;
 
   public FileReaderAttributesDOM()
   {
-    this.carnet = new Carnet();
+    this.model = new Model();
   }
 
-  protected Carnet readFileContactDOM(String sourceFile)
+  public Model read(String sourceFile)
   {
-
-    URL resource = this.getClass().getClassLoader().getResource(sourceFile);
-    File newFile = new File(resource.getFile());
-    try (FileReader file = new FileReader(newFile); BufferedReader fileReader = new BufferedReader(file))
+    try
     {
-      DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-      DocumentBuilder loader = factory.newDocumentBuilder();
-      Document document = loader.parse(newFile);
-
-      document.getDocumentElement().normalize();
-      NodeList listnode = document.getElementsByTagName(IContactConstant.NAMEXMLContact);
-
-      for (int i = 0; i < listnode.getLength(); i++)
-      {
-
-        Node nNode = listnode.item(i);
-
-        if (nNode.getNodeType() == Node.ELEMENT_NODE)
-        {
-          Element element = (Element) nNode;
-          String nom = element.getAttribute(IContactConstant.NOM);
-          String prenom = element.getAttribute(IContactConstant.PRENOM);
-          String adresse = element.getAttribute(IContactConstant.ADRESSE);
-          String age = element.getAttribute(IContactConstant.AGE);
-          String numero = element.getAttribute(IContactConstant.NUMERO);
-
-          int MonAge = Integer.parseInt(age);
-
-          NodeList autreList = listnode.item(i).getChildNodes();
-          Contact contactAutre = this.readFileAutreDOM(autreList);
-
-          Contact contact = new Contact(nom, prenom, adresse, MonAge, numero, contactAutre.getAutres());
-          carnet.addContact(contact);
-
-        }
-
-      }
-
+      URL ressource = getClass().getClassLoader().getResource(sourceFile);
+      File file = new File(ressource.getFile());
+      DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+      DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+      Document doc = dBuilder.parse(file);
+      doc.getDocumentElement().normalize();
+      readModel(doc);
     }
-    catch (Exception ex)
+    catch (Exception e)
     {
-      ex.printStackTrace();
+      e.printStackTrace();
     }
-    return carnet;
+    return this.model;
+
   }
 
-  protected Contact readFileAutreDOM(NodeList listnode)
+  protected void readModel(Document doc)
   {
-    Contact contact = new Contact();
+    NodeList list = doc.getElementsByTagName(Constant.NAMEXMLModel);
 
-    for (int i = 0; i < listnode.getLength(); i++)
+    for (int temp = 0; temp < list.getLength(); temp++)
     {
 
-      Node nNode = listnode.item(i);
+      Node nNode = list.item(temp);
 
       if (nNode.getNodeType() == Node.ELEMENT_NODE)
       {
         Element element = (Element) nNode;
-        String label = element.getAttribute(IAutreConstant.LABEL);
-        String valeur = element.getAttribute(IAutreConstant.VALEUR);
-        String[] MesValeurs = valeur.split(" ");
-        List<String> list = Arrays.asList(MesValeurs);
-        Autre autre = new Autre(label, list);
+        String nom = element.getAttribute(Constant.NAME);
 
-        contact.addAutreToContact(autre);
+        NodeList nEntities = list.item(temp).getChildNodes();
+        List<Entity> entities = this.readEntity(nEntities);
 
+        this.model.setNom(nom);
+        this.model.setEntities(entities);
       }
-
     }
 
-    return contact;
   }
 
-  public Carnet getCarnet()
+  protected List<Entity> readEntity(NodeList list)
   {
-    return this.carnet;
+
+    List<Entity> entities = new ArrayList<>();
+
+    for (int temp = 0; temp < list.getLength(); temp++)
+    {
+
+      Node nNode = list.item(temp);
+
+      if (nNode.getNodeType() == Node.ELEMENT_NODE)
+      {
+        Element element = (Element) nNode;
+        String nom = element.getAttribute(Constant.NAME);
+
+        NodeList nAttributes = list.item(temp).getChildNodes();
+
+        Entity entity = new Entity(nom);
+        entity.setAttributes(this.readAttribute(nAttributes));
+      }
+    }
+
+    return entities;
+  }
+
+  protected List<Attribute> readAttribute(NodeList list)
+  {
+
+    List<Attribute> attributes = new ArrayList<>();
+
+    for (int temp = 0; temp < list.getLength(); temp++)
+    {
+
+      Node nNode = list.item(temp);
+
+      if (nNode.getNodeType() == Node.ELEMENT_NODE)
+      {
+
+        Element element = (Element) nNode;
+        String nom = element.getAttribute(Constant.NAME);
+        String type = element.getAttribute(Constant.TYPE);
+
+        Attribute attribute = new Attribute(nom, type);
+
+        attributes.add(attribute);
+      }
+    }
+
+    return attributes;
   }
 
 }

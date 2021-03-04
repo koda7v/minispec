@@ -1,4 +1,4 @@
-package minispec.model;
+package model;
 
 public class Attribute
 {
@@ -6,8 +6,12 @@ public class Attribute
   protected String type;
 
   public Attribute()
+  {}
+
+  public Attribute(String nom, String type)
   {
-    // TODO Auto-generated constructor stub
+    this.nom = nom;
+    this.type = type;
   }
 
   public String getNom()

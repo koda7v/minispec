@@ -1,4 +1,4 @@
-package minispec.model;
+package model;
 
 public class Satellite
 {
@@ -6,8 +6,12 @@ public class Satellite
   protected Integer id;
 
   public Satellite()
+  {}
+
+  public Satellite(String nom, Integer id)
   {
-    // TODO Auto-generated constructor stub
+    this.nom = nom;
+    this.id = id;
   }
 
   public String getNom()
