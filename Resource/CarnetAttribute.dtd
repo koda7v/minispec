@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT Carnet (contact*)>
+<!ATTLIST Carnet type CDATA "commun">
+<!ELEMENT contact (autre*)>
+<!ATTLIST contact nom CDATA "">
+<!ATTLIST contact prenom CDATA "">
+<!ATTLIST contact adresse CDATA "">
+<!ATTLIST contact age CDATA "">
+<!ATTLIST contact numero CDATA "">
+<!ELEMENT autre EMPTY>
+<!ATTLIST autre label CDATA "">
+<!ATTLIST autre valeur CDATA "">

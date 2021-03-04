@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Carnet PUBLIC "CarnetId" "Carnet.dtd">
+<Carnet>
+	<type>commun</type>
+	<contact>
+		<nom>Le Bris</nom>
+		<prenom>Yann</prenom>
+		<adresse>1 route de brest</adresse>
+		<age>22</age>
+		<numero>06 95 46 55 65</numero>
+		<autre>
+			<label>Hobby</label>
+ 			<valeur>Lecture Echecs</valeur>
+		</autre>
+ 		<autre>
+			<label>Plat</label>
+ 			<valeur>Cassoulet</valeur>
+		</autre>
+	</contact>
+	<contact>
+		<nom>Anchyse</nom>
+		<prenom>Kilian</prenom>
+		<adresse>14 route des cerises</adresse>
+		<age>21</age>
+		<numero>06 95 36 45 59</numero>
+		<autre>
+			<label>Sports</label>
+ 			<valeur>Foot</valeur>
+		</autre>
+ 		<autre>
+			<label>Ordinateur</label>
+ 			<valeur>MSI</valeur>
+		</autre>
+	</contact>
+	<contact>
+		<nom>Barre</nom>
+		<prenom>Samuel</prenom>
+		<adresse>3 rue des oranges</adresse>
+		<age>21</age>
+		<numero>06 00 01 02 03</numero>
+	</contact>
+</Carnet>

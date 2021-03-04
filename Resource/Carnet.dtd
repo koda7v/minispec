@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT Carnet (type, contact*)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT contact (nom, prenom, adresse, age, numero, autre*)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT prenom (#PCDATA)>
+<!ELEMENT adresse (#PCDATA)>
+<!ELEMENT age (#PCDATA)>
+<!ELEMENT numero (#PCDATA)>
+<!ELEMENT autre (label, valeur)>
+<!ELEMENT label (#PCDATA)>
+<!ELEMENT valeur (#PCDATA)>
