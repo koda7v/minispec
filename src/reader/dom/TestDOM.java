@@ -22,7 +22,7 @@ public class TestDOM
   public void test() throws IOException
   {
     FileReaderAttributesDOM reader = new FileReaderAttributesDOM();
-    Model model = reader.read("carnet_test.xml");
+    Model model = reader.read("minispec.xml");
     assertTrue(model != null);
     assertTrue(model.getNom().equals("patate"));
     assertTrue(model.getEntities().size() == 1);

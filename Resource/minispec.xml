@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Model PUBLIC "CarnetId" "CarnetAttribute.dtd">
+<!DOCTYPE Model PUBLIC "MinispecId" "MiniSpecAttribute.dtd">
 <Model name="patate">
 	<entity name="Satellite">
 		<attribute name="nom" type="String"/>

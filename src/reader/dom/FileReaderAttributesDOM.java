@@ -97,6 +97,8 @@ public class FileReaderAttributesDOM
 
         Entity entity = new Entity(nom);
         entity.setAttributes(this.readAttribute(nAttributes));
+
+        entities.add(entity);
       }
     }
 
