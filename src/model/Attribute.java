@@ -1,6 +1,9 @@
 package model;
 
-public class Attribute
+import visitor.IEntityVisitor;
+import visitor.IVisitor;
+
+public class Attribute implements IEntityVisitor
 {
   protected String nom;
   protected String type;
@@ -32,6 +35,13 @@ public class Attribute
   public void setType(String type)
   {
     this.type = type;
+  }
+
+  @Override
+  public void accept(IVisitor visitor)
+  {
+    visitor.visitAttribute(this);
+
   }
 
 }

@@ -3,7 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Entity
+import visitor.IEntityVisitor;
+import visitor.IVisitor;
+
+public class Entity implements IEntityVisitor
 {
   protected String nom;
   protected List<Attribute> attributes;
@@ -37,6 +40,13 @@ public class Entity
   public void setAttributes(List<Attribute> attributes)
   {
     this.attributes = attributes;
+  }
+
+  @Override
+  public void accept(IVisitor visitor)
+  {
+    visitor.visitEntity(this);
+
   }
 
 }
