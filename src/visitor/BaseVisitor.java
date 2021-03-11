@@ -7,24 +7,34 @@ import model.Model;
 public class BaseVisitor implements IVisitor
 {
 
+  protected String code = "";
+
   @Override
   public void visitModel(Model model)
   {
-    // TODO Auto-generated method stub
-
+    code = code + "package " + model.getNom() + "\n";
+    for (Entity currentEntity : model.getEntities())
+    {
+      currentEntity.accept(this);
+    }
+    System.out.println(code);
   }
 
   @Override
   public void visitEntity(Entity entity)
   {
-    // TODO Auto-generated method stub
+    code = code + "class " + entity.getNom() + "\n";
+    for (Attribute currentAttribute : entity.getAttributes())
+    {
+      currentAttribute.accept(this);
+    }
 
   }
 
   @Override
   public void visitAttribute(Attribute attribute)
   {
-    // TODO Auto-generated method stub
+    code = code + attribute.getType() + " " + attribute.getNom() + "\n";
 
   }
 
