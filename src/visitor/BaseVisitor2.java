@@ -23,7 +23,7 @@ public class BaseVisitor2 implements IVisitor
   protected String actualPathFile;
   protected List<Attribute> attributes = new ArrayList<>();
   protected List<MyObject> myObjects = new ArrayList<>();
-  protected boolean myImport = false;
+  protected boolean myImport;
 
   @Override
   public void visitModel(Model model)
@@ -31,6 +31,7 @@ public class BaseVisitor2 implements IVisitor
     this.createPackage(model.getNom());
     for (Entity currentEntity : model.getEntities())
     {
+      myImport = false;
       content = "package " + model.getNom() + ";\n\n";
       currentEntity.accept(this);
       this.writeFile();
@@ -43,7 +44,7 @@ public class BaseVisitor2 implements IVisitor
   {
     this.createClass(entity.getNom());
     attributes = new ArrayList<>();
-    content2 = content2 + "public class " + entity.getNom() + "\n{\n\n";
+    content2 = "public class " + entity.getNom() + "\n{\n\n";
     for (Attribute currentAttribute : entity.getAttributes())
     {
       currentAttribute.accept(this);
@@ -51,7 +52,7 @@ public class BaseVisitor2 implements IVisitor
     content2 = content2 + "\n";
     loopConstructor(entity);
     loopGetterSetter();
-    content3 = content3 + "}\n";
+    content3 = "}\n";
   }
 
   @Override
@@ -80,7 +81,7 @@ public class BaseVisitor2 implements IVisitor
   {
     if (!myImport)
     {
-      content += "import java.util.ArrayList;\n";
+//      content += "import java.util.ArrayList;\n";
       content += "import java.util.List;\n\n";
       myImport = true;
     }
