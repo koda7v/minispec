@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Model PUBLIC "MinispecId" "MiniSpecAttribute.dtd">
-<Model name="patate">
+<Model name="satbat">
 	<entity name="Satellite">
-		<attribute name="nom" type="String"/>
+		<attribute name="nomSat" type="String"/>
+		<attribute name="id" type="Integer"/>
+	</entity>
+		<entity name="Balise">
+		<attribute name="nomBat" type="String"/>
 		<attribute name="id" type="Integer"/>
 	</entity>
 </Model>

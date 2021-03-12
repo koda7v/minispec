@@ -95,8 +95,8 @@ public class FileReaderAttributesDOM
 
         NodeList nAttributes = list.item(temp).getChildNodes();
 
-        Entity entity = new Entity(nom);
-        entity.setAttributes(this.readAttribute(nAttributes));
+        Entity entity = new Entity(nom, model);
+        entity.setAttributes(this.readAttribute(nAttributes, entity));
 
         entities.add(entity);
       }
@@ -105,7 +105,7 @@ public class FileReaderAttributesDOM
     return entities;
   }
 
-  protected List<Attribute> readAttribute(NodeList list)
+  protected List<Attribute> readAttribute(NodeList list, Entity entity)
   {
 
     List<Attribute> attributes = new ArrayList<>();
@@ -122,7 +122,7 @@ public class FileReaderAttributesDOM
         String nom = element.getAttribute(Constant.NAME);
         String type = element.getAttribute(Constant.TYPE);
 
-        Attribute attribute = new Attribute(nom, type);
+        Attribute attribute = new Attribute(nom, type, entity, model);
 
         attributes.add(attribute);
       }
