@@ -5,7 +5,7 @@
 		<attribute name="nomSat" type="String"/>
 		<attribute name="id" type="Integer"/>
 		<attribute name="parent" type="Flotte"/>
-		<attribute name="panneauSolaires" type="List" min="0" max="10">
+		<attribute name="panneauSolaires" type="List">
 			<objet name="PanneauSolaire"/>
 		</attribute>
 	</entity>

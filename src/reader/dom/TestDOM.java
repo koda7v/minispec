@@ -9,7 +9,7 @@ import org.junit.Test;
 import model.Attribute;
 import model.Entity;
 import model.Model;
-import model.Object;
+import model.MyObject;
 
 public class TestDOM
 {
@@ -63,11 +63,11 @@ public class TestDOM
   @Test
   public void test2() throws IOException
   {
-    FileReaderAttributesDOM reader = new FileReaderAttributesDOM();
+    FileReaderAttributesDOM2 reader = new FileReaderAttributesDOM2();
     Model model = reader.read("Resource/minispec2.xml");
     assertTrue(model != null);
     assertTrue(model.getNom().equals("satbat"));
-    assertTrue(model.getEntities().size() == 2);
+    assertTrue(model.getEntities().size() == 3);
 
     Entity entity1 = model.getEntities().get(0);
 
@@ -88,7 +88,7 @@ public class TestDOM
     assertTrue(attribute4.getNom().equals("panneauSolaires"));
     assertTrue(attribute4.getType().equals("List"));
 
-    Object objet = attribute4.getObject();
+    MyObject objet = attribute4.getObject().get(0);
     assertTrue(objet.getNom().equals("PanneauSolaire"));
 
     Entity entity2 = model.getEntities().get(1);
@@ -112,9 +112,9 @@ public class TestDOM
     assertTrue(entity3.getNom().equals("Flotte"));
     assertTrue(entity3.getAttributes().size() == 3);
 
-    Attribute attribute8 = entity2.getAttributes().get(0);
-    Attribute attribute9 = entity2.getAttributes().get(1);
-    Attribute attribute10 = entity2.getAttributes().get(2);
+    Attribute attribute8 = entity3.getAttributes().get(0);
+    Attribute attribute9 = entity3.getAttributes().get(1);
+    Attribute attribute10 = entity3.getAttributes().get(2);
 
     assertTrue(attribute8.getNom().equals("nomFlo"));
     assertTrue(attribute8.getType().equals("String"));
@@ -123,7 +123,7 @@ public class TestDOM
     assertTrue(attribute10.getNom().equals("satellites"));
     assertTrue(attribute10.getType().equals("List"));
 
-    Object objet2 = attribute4.getObject();
+    MyObject objet2 = attribute10.getObject().get(0);
     assertTrue(objet2.getNom().equals("Satellite"));
 
 //    carnet.addContact(contact4);

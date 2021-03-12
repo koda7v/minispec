@@ -22,12 +22,12 @@ public Integer getid()
  return this.id;
 }
 
-public void setnomBat(String nomBat )
+public void setnomBat(String nomBat)
 {
  this.nomBat = nomBat;
 }
 
-public void setid(Integer id )
+public void setid(Integer id)
 {
  this.id = id;
 }

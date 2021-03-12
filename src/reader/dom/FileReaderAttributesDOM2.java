@@ -16,6 +16,7 @@ import constants.Constant;
 import model.Attribute;
 import model.Entity;
 import model.Model;
+import model.MyObject;
 import visitor.BaseVisitor2;
 
 /**
@@ -122,7 +123,10 @@ public class FileReaderAttributesDOM2
         String nom = element.getAttribute(Constant.NAME);
         String type = element.getAttribute(Constant.TYPE);
 
+        NodeList nObject = list.item(temp).getChildNodes();
+
         Attribute attribute = new Attribute(nom, type, entity, model);
+        attribute.setObject(this.readObject(nObject, attribute));
 
         attributes.add(attribute);
       }
@@ -131,30 +135,25 @@ public class FileReaderAttributesDOM2
     return attributes;
   }
 
-  protected List<Object> readAttribute(NodeList list, Attribute attribute)
+  protected List<MyObject> readObject(NodeList list, Attribute attribute)
   {
-
-    List<Object> object = new ArrayList<>();
-
+    List<MyObject> objects = new ArrayList<>();
     for (int temp = 0; temp < list.getLength(); temp++)
     {
-
-      Node nNode = list.item(temp);
+      Node nNode = list.item(1);
 
       if (nNode.getNodeType() == Node.ELEMENT_NODE)
       {
 
         Element element = (Element) nNode;
         String nom = element.getAttribute(Constant.NAME);
-        String type = element.getAttribute(Constant.TYPE);
 
-        Attribute attribute = new Attribute(nom, type, entity, model);
-
-        attributes.add(attribute);
+        MyObject object = new MyObject(nom);
+        objects.add(object);
       }
-    }
 
-    return attributes;
+    }
+    return objects;
   }
 
 }

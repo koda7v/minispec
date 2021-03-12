@@ -11,6 +11,7 @@ import java.util.List;
 import model.Attribute;
 import model.Entity;
 import model.Model;
+import model.MyObject;
 
 public class BaseVisitor implements IVisitor
 {
@@ -126,7 +127,7 @@ public class BaseVisitor implements IVisitor
     for (Attribute currentAttribute : attributes)
     {
       content = content + "public void set" + currentAttribute.getNom() + "(" + currentAttribute.getType() + " "
-          + currentAttribute.getNom() + " )\n{\n this." + currentAttribute.getNom() + " = " + currentAttribute.getNom()
+          + currentAttribute.getNom() + ")\n{\n this." + currentAttribute.getNom() + " = " + currentAttribute.getNom()
           + ";\n}\n\n";
     }
   }
@@ -144,6 +145,13 @@ public class BaseVisitor implements IVisitor
       System.out.println("An error occurred.");
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public void visitObject(MyObject myObject)
+  {
+    // TODO Auto-generated method stub
+
   }
 
 }

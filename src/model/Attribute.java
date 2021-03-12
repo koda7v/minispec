@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import visitor.IEntityVisitor;
 import visitor.IVisitor;
 
@@ -9,7 +12,7 @@ public class Attribute implements IEntityVisitor
   protected String type;
   protected Model model;
   protected Entity entity;
-  protected Object object;
+  protected List<MyObject> object;
 
   public Attribute()
   {}
@@ -20,14 +23,15 @@ public class Attribute implements IEntityVisitor
     this.type = type;
     this.entity = entity;
     this.model = model;
+    this.object = new ArrayList<>();
   }
 
-  public Object getObject()
+  public List<MyObject> getObject()
   {
     return object;
   }
 
-  public void setObject(Object object)
+  public void setObject(List<MyObject> object)
   {
     this.object = object;
   }
