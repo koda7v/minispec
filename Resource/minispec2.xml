@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Model PUBLIC "MinispecId" "MiniSpecAttribute2.dtd">
+<Model name="satbat">
+	<entity name="Satellite">
+		<attribute name="nomSat" type="String"/>
+		<attribute name="id" type="Integer"/>
+		<attribute name="parent" type="Flotte"/>
+		<attribute name="panneauSolaires" type="List" min="0" max="10">
+			<objet name="PanneauSolaire"/>
+		</attribute>
+	</entity>
+	<entity name="PanneauSolaire">
+		<attribute name="nomPan" type="String"/>
+		<attribute name="id" type="Integer"/>
+		<attribute name="parent" type="Satellite"/>
+	</entity>
+	<entity name="Flotte">
+		<attribute name="nomFlo" type="String"/>
+		<attribute name="id" type="Integer"/>
+		<attribute name="satellites" type="List">
+			<objet name="Satellite"/>
+		</attribute>
+	</entity>
+</Model>
+
+

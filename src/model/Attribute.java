@@ -9,6 +9,7 @@ public class Attribute implements IEntityVisitor
   protected String type;
   protected Model model;
   protected Entity entity;
+  protected Object object;
 
   public Attribute()
   {}
@@ -19,6 +20,16 @@ public class Attribute implements IEntityVisitor
     this.type = type;
     this.entity = entity;
     this.model = model;
+  }
+
+  public Object getObject()
+  {
+    return object;
+  }
+
+  public void setObject(Object object)
+  {
+    this.object = object;
   }
 
   public String getNom()

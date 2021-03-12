@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT Model (entity*)>
+	<!ATTLIST Model name CDATA "">
+
+<!ELEMENT entity (attribute*)>
+	<!ATTLIST entity name CDATA "">
+	
+<!ELEMENT attribute (objet*)>
+	<!ATTLIST attribute name CDATA "">
+	<!ATTLIST attribute type CDATA "">
+	
+<!ELEMENT objet (#PCDATA)>
+	<!ATTLIST objet name CDATA "">
+
+
